@@ -19,7 +19,7 @@ python -m venv .venv # Crea un entorno virtual en el folder ".venv"
 # Activa el entorno virtual
 ./.venv/Scripts/Activate.ps1 # Windows Powershell
 # ./.venv/Scripts/activate.bat # Windows cmd
-# source .venv/scripts/activate # Unix Systems
+# source .venv/bin/activate # Unix
 python -m pip install -r requirements.txt # Instala las dependencias del proyecto en el entorno virtual
 python manage.py runserver # Abre el sitio en http//localhost:8000
 ~~~
