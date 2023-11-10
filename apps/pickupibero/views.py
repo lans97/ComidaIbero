@@ -7,3 +7,6 @@ def index(request):
         'test': "hi"
         }
     return render(request, "menus.html", context)
+
+def login(request):
+    return render(request, "login/login.html")

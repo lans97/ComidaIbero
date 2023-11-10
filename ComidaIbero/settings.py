@@ -26,7 +26,7 @@ PROJECT_TEMPLATES = [
 
 STATIC_URL = 'static/'
 
-STATIC_ROOT = join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = join(BASE_DIR, 'staticfiles/')
 
 STATICFILES_DIRS = [
     join(BASE_DIR, "static"),
