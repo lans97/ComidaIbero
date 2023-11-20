@@ -18,17 +18,17 @@
             <!-- <nav class="navbar navbar-expand-lg bg-body-tertiary navbar-custom"> -->
             <nav class="navbar navbar-expand-lg navbar-custom">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="#">Comida Ibero</a>
+                    <a class="navbar-brand" href="{% url 'landing' %}">Comida Ibero</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ms-auto">
                             <li class="nav-item dropdown"> <!-- Add the dropdown class -->
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <a class="nav-link dropdown-toggle" href="#" id="aboutDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Sobre
                                 </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <div class="dropdown-menu" aria-labelledby="aboutDropdown">
                                     <a class="dropdown-item" href="#">Este proyecto</a>
                                     <a class="dropdown-item" href="#">Nosotros</a>
                                 </div>
@@ -36,9 +36,23 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Contactos</a>
                             </li>
+                            {% if user.is_authenticated %}
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Inicia Sesión</a>
+                                <a class="nav-link" href="#">Carrito</a>
                             </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    {{ user.username }}
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="profileDropdown">
+                                    <a class="nav-link" href="{% url 'logout' %}">Cerrar Sesión</a>
+                                </div>
+                            </li>
+                            {% else %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'login' %}">Inicia Sesión</a>
+                            </li>
+                            {% endif %}
                         </ul>
                     </div>
                 </div>

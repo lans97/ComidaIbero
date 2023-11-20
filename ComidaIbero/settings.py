@@ -112,6 +112,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# Authentication Backend Config
+AUTHENTICATION_BACKENDS = ['apps.pickupibero.auth_backends.IberoAuthBackend']
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
