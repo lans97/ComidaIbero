@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block htmlhead %}
+<link rel="stylesheet" href="{% static "css/menu.css" %}">
+{% endblock htmlhead %}
+
+{% block content %}
+
+<div class="row mt-5">
+    <div class="text-center">
+        <h2>{{ restaurante.nombre }}</h2>
+    </div>
+    {% for item in menu %}
+    <div class="col-md-4 mb-4 mt-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{ item.nombre }}</h5>
+                <p class="card-content">${{ item.precio_unitario }}<br>{{ item.descripcion }}</p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock content %}

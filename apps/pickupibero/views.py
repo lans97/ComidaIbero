@@ -4,8 +4,23 @@ from django.contrib.auth.decorators import login_required
 
 from .forms import customLoginForm
 
+from .models import Restaurante, Producto
+
 def landing(request):
-    return render(request, "menus.html")
+    context = {}
+
+    lista_restaurantes = Restaurante.objects.all()
+    context['restaurantes'] = lista_restaurantes
+
+    return render(request, "restaurantes.html", context)
+
+def menu_view(request, rest_id):
+    context = {}
+    rest = Restaurante.objects.get(id=rest_id)
+    context['restaurante'] = rest
+    menu = Producto.objects.filter(restaurante=rest)
+    context['menu'] = menu
+    return render(request, "menu.html", context)
 
 def login_view(request):
     context = {}
