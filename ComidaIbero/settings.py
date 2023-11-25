@@ -26,7 +26,7 @@ PROJECT_TEMPLATES = [
 
 STATIC_URL = 'static/'
 
-STATIC_ROOT = join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = join(BASE_DIR, 'staticfiles/')
 
 STATICFILES_DIRS = [
     join(BASE_DIR, "static"),
@@ -111,6 +111,9 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+# Authentication Backend Config
+AUTHENTICATION_BACKENDS = ['apps.pickupibero.auth_backends.IberoAuthBackend']
 
 
 # Internationalization
