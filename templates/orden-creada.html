@@ -1,0 +1,12 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<ul>
+{% for orden in ordenes %}
+<li> Orden: {{ orden.pk }} - {{ orden.restaurante }}</li>
+{% endfor %}
+</ul>
+
+{% endblock %}

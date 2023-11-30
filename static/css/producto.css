@@ -1,0 +1,21 @@
+.product-details {
+    color: #ef3e42;
+}
+
+.product-button {
+    background-color: #ef3e42;
+    border-color: #ef3e42;
+}
+
+.product-toppings {
+    background-color: #ef3e42;
+    color: white;
+}
+
+.btn-primary {
+    background-color: #ef3e42;
+    color: white;
+    border: none;
+    display: block;
+    margin: 0 auto;
+}

@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block htmlhead %}
+<link rel="stylesheet" href="{% static "css/producto.css" %}">
+{% endblock htmlhead %}
+
+{% block content %}
+  <div class="container mt-4">
+    <div class="row">
+      <div class="col-md-4">
+        <!-- Product Image -->
+        <img src="{{ producto.imagen.url }}" alt="{{ producto.nombre }}" class="img-fluid rounded">
+      </div>
+      <div class="col-md-8">
+        <!-- Product Details -->
+        <h2>{{ producto.nombre }}</h2>
+        <p>{{ producto.descripcion }}</p>
+        <p><strong>Unit Price:</strong> ${{ producto.precio_unitario }}</p>
+
+        <form id="toppingForm" action="{% url 'agregar-a-carrito' %}" method="post">
+          {% csrf_token %}
+        {% if toppings %}
+          <div class="card card-body product-toppings">
+            {% for i in toppings %}
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="topping" value="{{ i.id }}" id="topping{{ i.id }}">
+              <label class="form-check-label" for="topping{{ i.id }}">
+                {{ i.nombre }}
+              </label>
+            </div>
+            {% endfor %}
+          </div>
+      {% endif %}
+        <input type="hidden" name="producto_id" value="{{ producto.id }}">
+        <button type="submit" class="btn btn-primary mt-3">Agregar al Carrito</button>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}

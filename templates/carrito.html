@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="col">
+</div>
+<div class="col">
+    <div class="text-center">
+        <h2> Carrito </h2>
+    </div>
+    
+    <div class="card card-body">
+        <ul>
+            {% for i in productos %}
+                {% if i.is_topping %}
+                    <li> -- {{ i.nombre }} {{ i.precio_unitario }}
+                    <a class="btn btn-danger" href="{% url 'borrar-del-carrito' numItem=i.numItem %}">x</a>
+                    </li>
+                {% else %}
+                    <li>{{ i.nombre }} {{ i.precio_unitario }}
+                    <a class="btn btn-danger" href="{% url 'borrar-del-carrito' numItem=i.numItem %}">x</a>
+                    </li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+    <h3> Total: ${{ total }} </h3> <a class="btn btn-primary" href="{% url 'comprar-carrito' %}">Comprar</a>
+</div>
+<div class="col">
+</div>
+
+{% endblock %}

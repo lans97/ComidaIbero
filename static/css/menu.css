@@ -1,0 +1,28 @@
+body {
+    background-color: #f8f9fa; /* Set a light background color */
+}
+
+.container {
+    margin-top: 20px; /* Add space above the container */
+}
+
+.card {
+    background-color: #ef3e42; /* Set the card background color */
+    color: #ffffff; /* Set text color to white */
+    height: 100%; /* Make the card take the full height of the anchor */
+}
+
+.card-link {
+    color: #ffffff; /* Set link color to white */
+    text-decoration: none; /* Remove underline */
+}
+
+.card-link:hover {
+    text-decoration: none; /* Remove underline on hover */
+}
+
+/* Optional: Add more styling as needed */
+.card-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
