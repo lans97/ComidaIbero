@@ -3,8 +3,8 @@ from django.contrib.auth.models import User
 
 class Restaurante(models.Model):
     nombre = models.CharField(max_length=50)
-    ubicacion = models.TextField()
-    descripcion = models.TextField()
+    ubicacion = models.TextField(null=True, blank=True)
+    descripcion = models.TextField(null=True, blank=True)
     registration_date = models.DateTimeField(auto_now_add=True)
     update_date = models.DateTimeField(auto_now_add=True)
     is_active = models.BooleanField(default=True)
@@ -15,7 +15,8 @@ class Restaurante(models.Model):
 class Producto(models.Model):
     restaurante = models.ForeignKey(Restaurante, on_delete=models.CASCADE)
     nombre = models.CharField(max_length=100)
-    descripcion = models.TextField()
+    imagen = models.ImageField(upload_to='static/productos/img/', null=True, blank=True)
+    descripcion = models.TextField(null=True, blank=True)
     precio_unitario = models.FloatField()
     is_topping = models.BooleanField(default=False)
     registration_date = models.DateTimeField(auto_now_add=True)
@@ -23,12 +24,13 @@ class Producto(models.Model):
     is_active = models.BooleanField(default=True)
 
     def __str__(self):
-        return self.nombre
+        return self.nombre + " - "+ self.restaurante.nombre
 
 class Orden(models.Model):
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
     restaurante = models.ForeignKey(Restaurante, on_delete=models.CASCADE)
-    estado = models.CharField(max_length=1)
+    estado = models.CharField(max_length=1) # [a]ctiva [i]nactiva [c]ancelada [e]ntregada
+    notas = models.TextField(null=True, blank=True)
     registration_date = models.DateTimeField(auto_now_add=True)
     update_date = models.DateTimeField(auto_now_add=True)
     is_active = models.BooleanField(default=True)
@@ -61,3 +63,10 @@ class OrdenItem(models.Model):
         else:
             desc += "{}\t{:.02f}".format(self.producto.nombre, self.producto.precio_unitario)
         return desc
+
+class RelacionToppings(models.Model):
+    producto = models.ForeignKey(Producto, on_delete=models.CASCADE, related_name='allowable_toppings')
+    topping = models.ForeignKey(Producto, on_delete=models.CASCADE, related_name='allowed_on_products')
+    
+    def __str__(self):
+        return self.producto.nombre + " - " + self.topping.nombre
