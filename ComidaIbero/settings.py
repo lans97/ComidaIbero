@@ -37,7 +37,7 @@ SECRET_FILE = normpath(join(BASE_DIR, 'secrets', 'SECRET.key'))
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["67dd-201-145-183-220.ngrok-free.app"]
+ALLOWED_HOSTS = ["67dd-201-145-183-220.ngrok-free.app", "localhost", "127.0.0.1"]
 
 CSRF_TRUSTED_ORIGINS = ["https://67dd-201-145-183-220.ngrok-free.app"]
 
